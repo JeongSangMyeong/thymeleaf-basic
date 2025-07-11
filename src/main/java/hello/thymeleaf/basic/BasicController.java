@@ -60,12 +60,6 @@ public class BasicController {
         model.addAttribute("servletContext", request.getServletContext());
         return "basic/basic-objects";
     }
-    @Component("helloBean")
-    static class HelloBean {
-        public String hello(String data) {
-            return "Hello " + data;
-        }
-    }
 
     @GetMapping("/date")
     public String date(Model model) {
@@ -105,8 +99,13 @@ public class BasicController {
     @GetMapping("/each")
     public String each(Model model) {
         addUsers(model);
-
         return "basic/each";
+    }
+
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        addUsers(model);
+        return "basic/condition";
     }
 
     private void addUsers(Model model) {
@@ -116,6 +115,13 @@ public class BasicController {
         list.add(new User("userC", 30));
 
         model.addAttribute("users", list);
+    }
+
+    @Component("helloBean")
+    static class HelloBean {
+        public String hello(String data) {
+            return "Hello " + data;
+        }
     }
 
     @Data
